@@ -72,3 +72,61 @@ html, body {
     top: 60%;
     transform: translateY(-60%);
 }
+
+#question_wrapper {
+   display: block;
+    position: relative;
+    height: 20vh;
+    width: 60vh;
+    background-color: white;
+    margin: 0 auto;
+    margin-bottom: 3vh;
+}
+
+.answer {
+    display: block;
+    position: relative;
+    float: left;
+    font-size: 3vh;
+    color: black;
+    margin-left: 2vh;
+}
+
+.check_wrapper {
+    display: block;
+    position: relative;
+    height: 4vh;
+    width: 4vh;
+    float: right;
+    margin-right: 2.5vh;
+    border-radius: 50%;
+    background-color: black;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.check_mark {
+    display: block;
+    position: relative;
+    height: 3.5vh;
+    width: 3.5vh;
+    margin: 0 auto;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url(assets/circle.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.check_mark:hover {
+    background-image: url(assets/check.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
