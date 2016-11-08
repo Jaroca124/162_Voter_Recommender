@@ -1,0 +1,74 @@
+html, body {
+  	margin: 0;
+  	padding: 0;
+  	text-align: center;
+    /*margin: -75px 0 0 -100px;*/
+    font-family: "Segoe UI Light","Segoe UI";
+    overflow: hidden;
+ }
+
+#background {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: absolute;
+    background-image: url(assets/bg.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#overlay {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: relative;
+    background-color: rgba(0,0,0,.7); 
+}
+
+#pic_wrapper {
+    display: block;
+    position: relative;
+    height: 60vh;
+    width: 50vh;
+    background-color: white;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#pic_container {
+    display: block;
+    position: relative;
+    height: 70%;
+    width: 90%;
+    background-color: black;
+    margin: 0 auto;
+    top: 5%;
+    background-image: url(assets/candidates/clinton.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.answer_wrapper {
+    display: block;
+    position: relative;
+    height: 8vh;
+    width: 60vh;
+    background-color: white;
+    margin: 0 auto;
+    margin-bottom: 1vh;
+}
+
+#answer_space {
+    display: block;
+    position: relative;
+    width: auto;
+    height: auto;
+    top: 60%;
+    transform: translateY(-60%);
+}
