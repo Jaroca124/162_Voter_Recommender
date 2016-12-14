@@ -22,7 +22,7 @@ html, body {
 #overlay {
     height: 100%;
     width: 100%;
-    display: block;
+    display: fixed;
     position: relative;
     background-color: rgba(0,0,0,.7); 
 }
@@ -64,7 +64,7 @@ html, body {
     margin-bottom: 1vh;
 }
 
-#answer_space {
+#question_container {
     display: block;
     position: relative;
     width: auto;
@@ -129,4 +129,16 @@ html, body {
     -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+#form {
+    margin: 0 auto;
+}
+
+#survey {
+    height: auto;
+    width: auto;
+    overflow: auto;
+    display: block;
+    margin: 0 auto;
 }
