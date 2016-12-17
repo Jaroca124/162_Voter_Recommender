@@ -1,0 +1,39 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#map_canvas {
+	height: 100%;
+	width: 70%;
+	float: left;
+}
+
+#sidebar {
+	float: right;
+	background-color: red;
+	height: 100%;
+	width: 30%;
+	text-align: center;
+	color: white;
+	background: linear-gradient(blue, green), blue;
+	font-family: Verdana;
+	overflow: scroll;
+}
+
+#content {
+	text-align: left;
+	padding-left: 10px;
+	font-size: 15px;
+}
+
+#content p {
+	background-color: #3AE791;
+	border-radius: 10px;
+	padding: 15px;
+}
