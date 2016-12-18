@@ -206,7 +206,7 @@ function renderMap() {
     map.panTo(myposition);
     marker = new google.maps.Marker({
         position: myposition,
-        icon: "mymarkerpic.png",
+        icon: "assets/mymarkerpic.png",
         title: "My Location"
     });
     marker.setMap(map);
@@ -296,7 +296,7 @@ function calc_distance(slat, slng) {
 }
 
 //////////////////////////////////
-// Generate Map Routes
+//     Generate Map Routes
 //////////////////////////////////
 
 function initMap(a_lat, a_lng, b_lat, b_lng) {
