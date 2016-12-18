@@ -1,136 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Marauder's Map</title>
+        <title>Polling Stations</title>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <meta charset="utf-8" />
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
         <link rel="stylesheet" href="style_polling.css"/>
-        <script>
-            var mylat = 0;
-            var mylng = 0;
-            var mylocation = new google.maps.LatLng(mylat,mylng);
-            myOptions = {
-                zoom: 15,
-                center: mylocation,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-
-            function initialize() {
-                map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-                getLocation();
-            }
-
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        mylat = position.coords.latitude;
-                        mylng = position.coords.longitude;
-                        mylat = 37.36087;
-                        mylng = -122.072531;
-
-                        renderMap();
-                    });   
-                }
-                else {
-                    alert("Alert: Geolocation is not supported by your browser!");
-                }
-            }
-
-            function renderMap() {
-                myposition = new google.maps.LatLng(mylat,mylng);
-                map.panTo(myposition);
-                marker = new google.maps.Marker({
-                    position: myposition,
-                    icon: "mymarkerpic.png",
-                    title: "My Location"
-                });
-                marker.setMap(map);
-                //Requesting
-                myinfo = '<p class="student">' + "Me: HarleyConnell" + "<br> Latitude: " + mylat + " Longitude: " + mylng + "</p>";
-                var infowindow = new google.maps.InfoWindow({
-                    content: myinfo
-                });
-                google.maps.event.addListener(marker, 'click', function () {
-                    infowindow.open(map, marker);
-                });
-
-                HTTPrequest();
-            }
-            
-            function HTTPrequest() {
-                console.log('Here');
-                var xhr = new XMLHttpRequest();
-                var url = "polling_data.json";
-
-                xhr.open("GET", url, true);
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        console.log('Returned');
-                        var myArr = JSON.parse(xhr.responseText);
-                        console.log(myArr);
-                        alert("Successful Login: Welcome " + login + "!");
-                        parse(myArr);
-                    }
-                }
-                
-                xhr.send();
-                
-
-            }   
-            
-            function parse(arr) {
-                var i;
-                for(i=0; i < arr.length + 1; i++) {
-                    peopleposition = new google.maps.LatLng(arr[i].lat,arr[i].lng);
-                    newmarker = new google.maps.Marker({
-                        position: peopleposition
-                    });
-                   
-                    personinfo = '<p class="student">' + i + ". " + arr[i].login + "<br> Latitude: " + arr[i].lat + " Longitude: " + arr[i].lng + "<br> Distance from Me: " + ((Math.round(distance(arr[i].lat, arr[i].lng)*100000)) / 100000) + " mi</p>";
-                    infowindow = new google.maps.InfoWindow({
-                        content: personinfo
-                    });
-                    setinfowindow(newmarker, infowindow);
-                    newmarker.setMap(map);
-                }
-            }
-
-            function setinfowindow(marker, content) {
-                google.maps.event.addListener(marker, 'click', function() {
-                        content.open(map, marker);
-                    });
-            }
-
-
-
-            //Haversine Formula From: http://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript
-
-            Number.prototype.toRad = function() {
-                return this * Math.PI / 180;
-            }
-
-            function distance(slat, slng) {
-                    var x1 = mylat - slat;
-                    var dlat = x1.toRad();
-                    var x2 = mylng - slng;
-                    var dlng = x2.toRad();
-                    var R = 6371; //km constant
-                    var a = Math.sin(dlat/2) * Math.sin(dlat/2) + Math.cos(slat.toRad()) * Math.cos(mylat.toRad()) * Math.sin(dlng/2) * Math.sin(dlng/2);
-                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-                    var d = R * c;
-                    return (d / 1.6);
-            }
-
-        </script>
+        <script src='polling_data.js'></script>
     </head>
     <body onload="initialize()">
         <div id="map_canvas"></div>
         <div id="sidebar">
-            <h3>Classmates Near Me:</h3>
+            <h3>Nearest Polling Stations:</h3>
             <div id="content"></div>
         </div>
+        <div id='bottom_bar'></div>
     </body>
 </html>

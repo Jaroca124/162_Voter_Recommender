@@ -10,20 +10,22 @@ body {
 
 #map_canvas {
 	height: 100%;
-	width: 70%;
+	width: 100%;
 	float: left;
+    z-index: 0;
 }
 
 #sidebar {
-	float: right;
-	background-color: red;
-	height: 100%;
+	float: left;
+	height: 70%;
 	width: 30%;
+    display: block;
 	text-align: center;
 	color: white;
-	background: linear-gradient(blue, green), blue;
-	font-family: Verdana;
+	background: black;
+	font-family: sans-serif;
 	overflow: scroll;
+    z-index: 1;
 }
 
 #content {
@@ -32,8 +34,19 @@ body {
 	font-size: 15px;
 }
 
-#content p {
-	background-color: #3AE791;
+#content div {
+	background-color: dimgray;
+    box-shadow: 2px;
 	border-radius: 10px;
 	padding: 15px;
+    margin: 5px;
+    width: auto;
+}
+
+#bottom_bar {
+    height: 30%;
+    width: 100%;
+    display: block;
+    background-color: rgba(0,0,0,.1);
+    z-index: 1;
 }
