@@ -242,11 +242,9 @@ function parse(arr) {
         
         // Calculate Distance to Station
         dist = ((Math.round(calc_distance(arr[i].Lat, arr[i].Long)*100000)) / 100000);
-        console.log(dist);
         
         if (i == 0) {
-            console.log('first');
-            closest_distance = dist;   
+            console.log('first');   
         }
         
         if (closest_distance > dist) {
@@ -300,7 +298,6 @@ function calc_distance(slat, slng) {
 //////////////////////////////////
 
 function initMap(a_lat, a_lng, b_lat, b_lng) {
-    console.log('init_map');
     var pointA = new google.maps.LatLng(a_lat, a_lng),
     pointB = new google.maps.LatLng(b_lat, b_lng),
     myOptions = {
@@ -312,37 +309,46 @@ function initMap(a_lat, a_lng, b_lat, b_lng) {
     directionsService = new google.maps.DirectionsService,
     directionsDisplay = new google.maps.DirectionsRenderer({
       map: map
-    }),
-    markerA = new google.maps.Marker({
-      position: pointA,
-      title: "point A",
-      label: "A",
-      map: map
-    }),
-    markerB = new google.maps.Marker({
-      position: pointB,
-      title: "point B",
-      label: "B",
-      map: map
+      ,suppressMarkers: true
     });
+    
 
   // get route from A to B
-  calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+  calculateAndDisplayRoute(map, directionsService, directionsDisplay, pointA, pointB);
 
 }
 
 
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
-  directionsService.route({
-    origin: pointA,
-    destination: pointB,
-    travelMode: google.maps.TravelMode.DRIVING
-  }, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    } else {
-      window.alert('Directions request failed due to ' + status);
-    }
-  });
+function calculateAndDisplayRoute(map, directionsService, directionsDisplay, pointA, pointB) {
+    
+    directionsService.route({
+        origin: pointA,
+        destination: pointB,
+        travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            set_markers(map, response);
+        }
+        else {
+          window.alert('Directions request failed due to ' + status);
+        }
+    });
+}
+
+function set_markers(map, response) {
+    var leg = response.routes[0].legs[0];
+    new google.maps.Marker({
+        position: leg.start_location,
+        map: map,
+        icon: "assets/start_pin.png",
+        title: "Start"
+    });
+    new google.maps.Marker({
+        position: leg.end_location,
+        map: map,
+        icon: "assets/end_pin.png",
+        title: "End"
+    });
 }
